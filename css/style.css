@@ -1,3 +1,7 @@
+body {
+	background-image: url('../images/wood.jpg');
+}
+
 .row {
 	margin-top: 100px;
 }
@@ -5,5 +9,9 @@
 h2 {
 	font-family: "monotype corsiva, Serif";
 	font-size: 40px;
+}
+
+.shadow {
+	box-shadow: 10px 10px 5px;
 }
 
