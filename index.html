@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ToDo List App</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/angular2.js"></script>
+</head>
+<body>
+<div id="body">
+    <div class="container"> 
+        <div class = "row jumbotron">
+            <div class="col-md-7 col-md-offset-3"> 
+               <div class="col-md-offset-2">   
+                    <h2 id="listTitle">What needs to be done?</h2>
+               </div>
+            <div id="form">
+               <div class="form-group">                   
+                   <input id="textBox" placeholder = "Add a new task..." class="form-control input-lg">
+               </div>
+               <div class="form-group">
+                    <select id="selectBox" class="form-control input-lg">
+                        <option value="" disabled selected style='display:none;'>Priority</option>
+                        <option value="3">High</option>
+                        <option value="2">Medium</option>
+                        <option value="1">Low</option>
+                        <option value="0">None</option>
+                    </select>
+                </div>
+                <div class="col-md-offset-10">
+                    <button class="btn btn-primary btn-lg" type="addButton">Add</button>
+                </div>
+                <div id="ToDoListTable">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+    <script src="js/jquery.min.js" type="text/javascript"></script>
+    <script src="js/bootstrap.js"></script>
+</html>
