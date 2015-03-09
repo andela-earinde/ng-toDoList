@@ -25,6 +25,10 @@ app.controller("TodoController", [function(){
 	  	    this.todo.completed = "not completed";
 	  	    this.todo.warning = "warning";
 	  	    this.com = false;
+	  	    this.todo.hideText = false;
+	  	    this.todo.hideInput = true;
+	  	    this.todo.hideSave = true;
+	  	    this.todo.hideEdit = false;
 	  	    this.data.unshift(this.todo);
 	  	    this.todo = {};
 	  	    this.text = "";
@@ -102,6 +106,20 @@ app.controller("TodoController", [function(){
            this.list = this.storedList[index];
            this.listName = this.list;
 	  	   this.data = JSON.parse(localStorage.getItem(this.list));
+	  }
+
+	  this.hideWindow = function(to) {
+	      to.hideText = true;
+	      to.hideInput = false;
+          to.hideSave = false;
+          to.hideEdit = true;
+	  }
+
+	  this.saveWindow = function(to) {
+	      to.hideText = false;
+	      to.hideInput = true;
+	      to.hideSave = true;
+	      to.hideEdit = false;
 	  }
 
 	  for (i = 0; i < localStorage.length; i++){

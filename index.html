@@ -24,6 +24,8 @@
                            <div class="modal-body">
                               <p>This is a simple TODO app built with Angularjs. Although still Buggy, it is useful.</p>
                               <p>The TODO app utilises DOMstorage. You can save your list, create new ones and also retrieve your old lists.</p>
+                              <p>When you click retrieve list, you may find strange lists. this are the stored sessions
+                                in your browser. You just have to locate your stored list</p>
                               <p>Enjoy!!!</p>
                            </div>
                            <div class="modal-footer">
@@ -149,7 +151,8 @@
                         Cannot submit an empty field (Click to hide message)
                    </div>
                </div>
-                <div class="col-md-12 col-md-offset-3">
+                <div class="col-md-12">
+                    <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#loadModal">Click for info</button>
                     <button ng-click="todo.addTodo()" class="btn btn-primary btn-lg" type="addButton" data-toggle="tooltip" data-placement="left" title="Click to add an entry to the list">
                     Add</button>
                     <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Clear All</button>
@@ -173,8 +176,10 @@
                         </div>
                          <div class="alert alert-{{to.warning}} alert-dismissable list">
                             <button type="button" ng-click="todo.removeList(to, $index)" class="close" aria-hidden="true">&times;</button>
-                             <button id="edit" type="button" class="close" aria-hidden="true" data-toggle="modal" data-target="#editModal">Edit</button>
-                            <span id="text">{{to.text}}</span>
+                            <button id="edit" type="button" class="close" ng-hide="to.hideEdit" aria-hidden="true" ng-click="todo.hideWindow(to)">Edit</button> 
+                            <button id="edit" type="button" class="close" ng-hide="to.hideSave" aria-hidden="true" ng-click="todo.saveWindow(to)">Save</button>
+                            <span id="text" ng-hide="to.hideText">{{to.text}}</span>
+                            <input type="text" class="form-control input-lg" ng-model="to.text" ng-hide="to.hideInput">
                          </div>
                     </div>   
                 </div>
