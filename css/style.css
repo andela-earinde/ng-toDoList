@@ -20,7 +20,7 @@ input[id="textBox"] {
 }
 
 .msg {
-	font-size: 30px;
+	font-size: 25px;
 }
 
 .list {
@@ -51,6 +51,12 @@ input[id="textBox"] {
 .listname {
 	font-size: 20px;
 	width: 300px;
+}
+
+.time {
+	position: relative;
+	bottom: 50px;
+	left:100px;
 }
 
 /*

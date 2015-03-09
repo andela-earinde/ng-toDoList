@@ -1,8 +1,7 @@
-var app = angular.module("ToDo", []);
+angular.module("ToDo", []).
+      controller("TodoController", ["Data",function(Data){
 
-app.controller("TodoController", [function(){
-
-	  this.data = [];
+	  this.data = Data.list();
 
 	  this.todo = {}
 
@@ -16,8 +15,11 @@ app.controller("TodoController", [function(){
 
 	  this.storedList = [];
 
-	  this.list = "";
-    
+	  this.priority = [{name: "high"},
+	                    {name: "low"}];
+
+	  this.myPrior = this.priority[1].name;
+
 	  this.addTodo = function() {
 	  	 if(this.text){
 	  	    this.todo.text = this.text;
@@ -25,11 +27,12 @@ app.controller("TodoController", [function(){
 	  	    this.todo.completed = "not completed";
 	  	    this.todo.warning = "warning";
 	  	    this.com = false;
+	  	    this.todo.date = new Date().getTime();
 	  	    this.todo.hideText = false;
 	  	    this.todo.hideInput = true;
 	  	    this.todo.hideSave = true;
 	  	    this.todo.hideEdit = false;
-	  	    this.data.unshift(this.todo);
+	  	    Data.add(this.todo, this.myPrior);
 	  	    this.todo = {};
 	  	    this.text = "";
 	  	 }
@@ -85,7 +88,8 @@ app.controller("TodoController", [function(){
 
 	  this.saveList = function() {
 	  	if(!(/\w.\s\w.|^\s|\s$|^$/.test(this.listName))){
-	  	   localStorage.setItem(this.listName, JSON.stringify(this.data));
+	  	   Data.save(this.listName);
+	  	   this.data = Data.list();
 	  	   document.location.reload();
 	  	}
 	  	else {
@@ -95,7 +99,8 @@ app.controller("TodoController", [function(){
 
 	  this.createList = function() {
 	  	if(!(/\w.\s\w.|^\s|\s$|^$/.test(this.listName))){
-	  	   localStorage.setItem(this.listName, JSON.stringify(this.data));
+	  	   Data.save(this.listName);
+	  	   this.data = Data.list();
 	  	}
 	  	else {
 	  		this.listmsg = true;
@@ -103,9 +108,8 @@ app.controller("TodoController", [function(){
 	  }
 
 	  this.reList = function(index) {
-           this.list = this.storedList[index];
-           this.listName = this.list;
-	  	   this.data = JSON.parse(localStorage.getItem(this.list));
+	  	   this.listName = Data.retreive(index, this.storedList);
+	  	   this.data = Data.list();
 	  }
 
 	  this.hideWindow = function(to) {
@@ -124,7 +128,7 @@ app.controller("TodoController", [function(){
 
 	  for (i = 0; i < localStorage.length; i++){
           key = localStorage.key(i);
-          this.storedList.push(key);
-          
+          this.storedList.push(key);         
       }
+
 }]);
