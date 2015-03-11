@@ -1,4 +1,5 @@
-angular.module("ToDo", []).
+
+angular.module("todo").
       controller("TodoController", ["Data",function(Data){
 
 	  this.data = Data.list();

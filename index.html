@@ -5,8 +5,8 @@
     <title>ToDo List App</title>
     <link rel="stylesheet" href="css/bootstrap.css">
     <link rel="stylesheet" href="css/style.css">
-    <script src="js/jquery.min.js" type="text/javascript"></script>
-    <script src="js/angular2.js"></script>
+    <script src="js/vendor/jquery.min.js" type="text/javascript"></script>
+    <script src="js/vendor/angular2.js"></script>
 </head>
 <body>
 <div id="body">
@@ -14,133 +14,8 @@
         <div class = "row jumbotron shadow">
             <div class="col-md-8 col-md-offset-2" ng-controller="TodoController as todo"> 
                 <!-- Load Modal-->
-                <div class="modal fade" id="loadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Welcome to AndelTODO</h4>
-                            </div>
-                           <div class="modal-body">
-                              <p>This is a simple TODO app built with Angularjs. Although still Buggy, it is useful.</p>
-                              <p>The TODO app utilises DOMstorage. You can save your list, create new ones and also retrieve your old lists.</p>
-                              <p>When you click retrieve list, you may find strange lists. This are the stored sessions
-                                in your browser. You just have to locate your stored lists</p>
-                              <p>Enjoy!!!</p>
-                           </div>
-                           <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                           </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End of load modal-->
-                <!-- Clear all modal-->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Clear All</h4>
-                            </div>
-                           <div class="modal-body">
-                              <p>Are You sure you want to clear the List</p>
-                           </div>
-                           <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary" ng-click="todo.clearAll()">Clear all</button>
-                           </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End of clear all modal-->
-                <!-- Save list modal modal-->
-                <div class="modal fade" id="listModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Save List(No space in the list name)</h4>
-                            </div>
-                           <div class="modal-body">
-                              <div class="form-group">                   
-                                   <input id="textBox" ng-model = "todo.listName" placeholder = "Name of List..." class="form-control input-lg">
-                                   <div class="alert alert-danger msg" ng-show="todo.listmsg" ng-click="todo.off()">
-                                       The name of the list Should not contain space or be empty(click to hide)
-                                   </div>
-                              </div>
-                           </div>
-                           <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary" ng-click="todo.saveList()">Save</button>
-                           </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End of save list modal-->
-                <!-- create list modal modal-->
-                <div class="modal fade" id="creModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Create List(No space in the list name)</h4>
-                            </div>
-                           <div class="modal-body">
-                              <div class="form-group">                   
-                                   <input id="textBox" ng-model = "todo.listName"placeholder = "Name of List..." class="form-control input-lg">
-                                   <div class="alert alert-danger msg" ng-show="todo.listmsg" ng-click="todo.off()">
-                                       The name of the list Should not contain space or be empty(click to hide)
-                                   </div>
-                              </div>
-                           </div>
-                           <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary" ng-click="todo.createList()">Create</button>
-                           </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End of create list modal-->
-                 <!-- Retrieve all modal-->
-                <div class="modal fade" id="reModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Retrieve List</h4>
-                            </div>
-                           <div class="modal-body">
-                               <button class="btn btn-primary"ng-repeat="store in todo.storedList" ng-click="todo.reList($index)">{{store}}</button>
-                           </div>
-                           <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                           </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End of retrieve all modal-->
-                <!-- Edit list modal modal-->
-                <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                <h4 class="modal-title">Edit List</h4>
-                            </div>
-                           <div class="modal-body">
-                              <div class="form-group">                   
-                                   Broken for now
-                              </div>
-                           </div>
-                           <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary" ng-click="todo.saveList()">Save</button>
-                           </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- End of edit list modal-->
+                <modal></modal>
+                <!-- End of modal-->
                <div class="col-md-offset-2">   
                     <h2 id="listTitle">What needs to be done?</h2>
                </div>
@@ -194,7 +69,10 @@
     </div>
 </div>
 </body>
-    <script src="js/todo.js"></script>
-    <script src="js/services.js"></script>
-    <script src="js/bootstrap.js"></script>
+    <script src="js/app/app.js"></script>
+    <script src="js/app/todo/todo.js"></script>
+    <script src="js/app/todo/controllers/todoController.js"></script>
+    <script src="js/app/todo/services/services.js"></script>
+    <script src="js/app/todo/directives/modal-directive.js"></script>
+    <script src="js/vendor/bootstrap.js"></script>
 </html>
