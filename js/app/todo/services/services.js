@@ -1,6 +1,6 @@
 //angular service to store the list data and retreive the list data
 
-angular.module("ToDo")
+angular.module("todo")
     .factory("Data", [function(){
         var data = [];
         var list1 = "";
@@ -21,6 +21,7 @@ angular.module("ToDo")
         	},
         	save: function(listName) {
 	  	        localStorage.setItem(listName, JSON.stringify(data));
+                data = JSON.parse(localStorage.getItem(listName));;
         	},
         	retreive: function(index, storedList) {
                  list1 = storedList[index];

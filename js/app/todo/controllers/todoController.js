@@ -1,10 +1,9 @@
-
 angular.module("todo").
       controller("TodoController", ["Data",function(Data){
 
 	  this.data = Data.list();
 
-	  this.todo = {}
+	  this.todo = {};
 
 	  this.text = "";
 
@@ -23,16 +22,16 @@ angular.module("todo").
 
 	  this.addTodo = function() {
 	  	 if(this.text){
-	  	    this.todo.text = this.text;
-	  	    this.todo.complete = false;
-	  	    this.todo.completed = "not completed";
-	  	    this.todo.warning = "warning";
-	  	    this.com = false;
-	  	    this.todo.date = new Date().getTime();
-	  	    this.todo.hideText = false;
-	  	    this.todo.hideInput = true;
-	  	    this.todo.hideSave = true;
-	  	    this.todo.hideEdit = false;
+	  	 	this.todo.text = this.text;
+	        this.todo.complete = false;
+	        this.todo.completed = "not completed";
+	        this.todo.warning = "warning";
+	        this.todo.com = false;
+	        this.todo.date = new Date().getTime();
+	        this.todo.hideText = false;
+	        this.todo.hideInput = true;
+	        this.todo.hideSave = true;
+	        this.todo.hideEdit = false;
 	  	    Data.add(this.todo, this.myPrior);
 	  	    this.todo = {};
 	  	    this.text = "";
