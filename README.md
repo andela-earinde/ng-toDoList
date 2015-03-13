@@ -6,12 +6,12 @@ The todo list app is used to save task to be completed. You can create a new lis
 
 ###Features
 The Todo list can perform the following features:
-    + Create, Update, Delete ande Retreive tasks
-    + Create a new List
-    + Set the priority of the added task
-    + Toggle a task to completed or not completed 
-    + Clear all the list saved in the local staorage
-    + Show the amount of tasks added, the amount completed and the amount uncompleted
+  + Create, Update, Delete ande Retreive tasks
+  + Create a new List
+  + Set the priority of the added task
+  + Toggle a task to completed or not completed 
+  + Clear all the list saved in the local staorage
+  + Show the amount of tasks added, the amount completed and the amount uncompleted
 
 ###Dependecies
 
